@@ -1,5 +1,6 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 
 const ArticlesList = () => {
   const [articles, setArticles] = useState([]);
@@ -20,6 +21,7 @@ const ArticlesList = () => {
   if (err) return <div>{err}</div>;
   return (
     <section>
+      <Link to="/add-aricle">Add new article</Link>
       <div>
         {articles ? (
           articles.map((article) => (
