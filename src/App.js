@@ -1,7 +1,8 @@
+import ArticleApp from "./Components/ArticleApp";
 function App() {
   return (
     <main>
-     Article
+      <ArticleApp />
     </main>
   );
 }
