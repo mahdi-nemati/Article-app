@@ -16,7 +16,7 @@ const Navigation = () => {
             <li>
               <NavLink
                 to="/"
-                className={(n) => (n.isActive ? `` : "")}
+                class={(n) => (n.isActive ? "text-red-500" : "")}
               >
                 <AiFillHome />
               </NavLink>
@@ -29,7 +29,7 @@ const Navigation = () => {
               ) : (
                 <NavLink
                   to="/signup"
-                  className={(n) => (n.isActive ? `` : "")}
+                  class={(n) => (n.isActive ? "text-red-500" : "")}
                 >
                   <BiLogIn />
                 </NavLink>

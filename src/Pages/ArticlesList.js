@@ -33,7 +33,7 @@ const ArticlesList = () => {
      pl-3 pr-3 w-full
      "
     >
-      <div class="md:mb-4 flex sm:w-10/12 md:w-9/12 items-center justify-between text-lg sm:text-xl md:text-2xl lg:text-3xl">
+      <div class="md:mb-4 w-full flex sm:w-10/12 md:w-9/12 items-center justify-between text-lg sm:text-xl md:text-2xl lg:text-3xl">
         <p>Articles !</p>
         <Link
           to="/add-aricle"
