@@ -1,8 +1,11 @@
 import ArticleApp from "./Components/ArticleApp";
+import SignupProvider from "./Providers/SignupProvider";
 function App() {
   return (
     <main>
-      <ArticleApp />
+      <SignupProvider>
+        <ArticleApp />
+      </SignupProvider>
     </main>
   );
 }
