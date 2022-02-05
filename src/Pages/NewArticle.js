@@ -3,8 +3,10 @@ import { useFormik } from "formik";
 import { useNavigate } from "react-router-dom";
 import * as yup from "yup";
 import Input, { TextArea } from "../common/Input";
+import { useSignup } from "../Providers/SignupProvider";
 const NewArticle = () => {
   const navigate = useNavigate();
+  const signup = useSignup();
   // set initail
   const initialValues = {
     title: "",
@@ -13,6 +15,7 @@ const NewArticle = () => {
   };
   // set submit function
   const onSubmit = (formValues) => {
+    if (!signup) navigate("/signup");
     const { title, content, author } = formValues;
     const newArticle = {
       title,

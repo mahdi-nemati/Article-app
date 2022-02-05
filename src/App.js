@@ -1,12 +1,13 @@
 import ArticleApp from "./Components/ArticleApp";
 import SignupProvider from "./Providers/SignupProvider";
+import Layout from "./Layout/Layout";
 function App() {
   return (
-    <main>
+    <Layout>
       <SignupProvider>
         <ArticleApp />
       </SignupProvider>
-    </main>
+    </Layout>
   );
 }
 

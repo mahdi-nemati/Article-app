@@ -1,6 +1,7 @@
 import { AiFillHome } from "react-icons/ai";
 import { BiLogIn } from "react-icons/bi";
 import { useSignup } from "../Providers/SignupProvider";
+import { NavLink } from "react-router-dom";
 const Navigation = () => {
   const signup = useSignup();
   return (
@@ -15,7 +16,7 @@ const Navigation = () => {
             <li>
               <NavLink
                 to="/"
-                className={(n) => (n.isActive ? `${styles.active}` : "")}
+                className={(n) => (n.isActive ? `` : "")}
               >
                 <AiFillHome />
               </NavLink>
@@ -28,7 +29,7 @@ const Navigation = () => {
               ) : (
                 <NavLink
                   to="/signup"
-                  className={(n) => (n.isActive ? `${styles.active}` : "")}
+                  className={(n) => (n.isActive ? `` : "")}
                 >
                   <BiLogIn />
                 </NavLink>

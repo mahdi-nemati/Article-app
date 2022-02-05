@@ -4,8 +4,10 @@ import { useNavigate, useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 import * as yup from "yup";
 import Input, { TextArea } from "../common/Input";
+import { useSignup } from "../Providers/SignupProvider";
 const EditArticle = () => {
   const [article, setArticle] = useState([]);
+  const signup = useSignup();
   const navigate = useNavigate();
   const articleId = useParams().id;
   // get data
@@ -28,6 +30,7 @@ const EditArticle = () => {
   };
   // set submit function
   const onSubmit = (formValues) => {
+    if (!signup) navigate("/signup");
     const { title, content, author } = formValues;
     const editedArticle = {
       title,

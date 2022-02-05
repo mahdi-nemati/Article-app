@@ -5,6 +5,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { useSignupAction } from "../Providers/SignupProvider";
 const SignupForm = () => {
   const navigate = useNavigate();
+  const dispatch = useSignupAction();
   // set initail
   const initialValues = {
     name: "",
@@ -15,7 +16,7 @@ const SignupForm = () => {
   };
   // set submit function
   const onSubmit = () => {
-    useSignupAction(true);
+    dispatch(true)
     navigate("/");
   };
   // set validate
