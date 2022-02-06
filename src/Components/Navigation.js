@@ -14,7 +14,7 @@ const Navigation = () => {
         <div class="flex  items-center justify-between h-full sm:w-11/12 ">
           <ul class="flex items-center justify-center ml-3">
             <li>
-              <NavLink to="/" class={(n) => (n.isActive ? "text-red-500" : "")}>
+              <NavLink to="/" className={(n) => (n.isActive ? "active" : "")}>
                 <AiFillHome />
               </NavLink>
             </li>
@@ -26,7 +26,7 @@ const Navigation = () => {
               ) : (
                 <NavLink
                   to="/signup"
-                  class={(n) => (n.isActive ? "text-red-500" : "")}
+                  className={(n) => (n.isActive ? "active" : "")}
                 >
                   <BiLogIn />
                 </NavLink>
