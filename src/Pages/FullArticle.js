@@ -1,14 +1,14 @@
 import { useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
-import axios from "axios";
+import { http } from "../Services/HttpService";
 const FullArticle = () => {
   const [article, setArticle] = useState([]);
   const id = useParams().id;
   useEffect(() => {
     const getData = async () => {
       try {
-        const { data } = await axios.get(
-          `http://localhost:3001/Articles/${id}`
+        const { data } = await http.get(
+          `/Articles/${id}`
         );
         setArticle([data]);
       } catch (error) {}

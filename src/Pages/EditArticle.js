@@ -1,11 +1,10 @@
-import axios from "axios";
 import { useFormik } from "formik";
 import { useNavigate, useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 import * as yup from "yup";
 import Input, { TextArea } from "../common/Input";
 import { useAuth } from "../Providers/SignupProvider";
-
+import { http } from "../Services/HttpService";
 const EditArticle = () => {
   const [article, setArticle] = useState([]);
   const navigate = useNavigate();
@@ -15,9 +14,7 @@ const EditArticle = () => {
   useEffect(() => {
     const getData = async () => {
       try {
-        const { data } = await axios.get(
-          `http://localhost:3001/Articles/${articleId}`
-        );
+        const { data } = await http.get(`/Articles/${articleId}`);
         setArticle(data);
       } catch (error) {}
     };
@@ -41,10 +38,7 @@ const EditArticle = () => {
       };
       const postData = async () => {
         try {
-          await axios.put(
-            `http://localhost:3001/Articles/${articleId}`,
-            editedArticle
-          );
+          await http.put(`/Articles/${articleId}`, editedArticle);
           navigate("/");
         } catch (error) {}
       };

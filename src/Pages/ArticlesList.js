@@ -1,8 +1,7 @@
-import axios from "axios";
 import { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { useAuth } from "../Providers/SignupProvider";
-
+import { http } from "../Services/HttpService";
 const ArticlesList = () => {
   const auth = useAuth();
   const navigate = useNavigate();
@@ -12,7 +11,7 @@ const ArticlesList = () => {
   useEffect(() => {
     const getData = async () => {
       try {
-        const { data } = await axios.get("http://localhost:3001/Articles");
+        const { data } = await http.get("/Articles");
         setArticles(data);
       } catch (error) {
         setErr("somthing went wrong");
@@ -24,8 +23,8 @@ const ArticlesList = () => {
   if (err) return <div>{err}</div>;
   // deleting selected article from DB
   const deleteHandler = (id) => {
-    if(!auth) navigate("/signup")
-    axios.delete(`http://localhost:3001/Articles/${id}`);
+    if (!auth) navigate("/signup");
+    http.delete(`/Articles/${id}`);
   };
   return (
     <section

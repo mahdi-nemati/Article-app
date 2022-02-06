@@ -1,10 +1,9 @@
-import axios from "axios";
 import { useFormik } from "formik";
 import { useNavigate } from "react-router-dom";
 import * as yup from "yup";
 import Input, { TextArea } from "../common/Input";
 import { useAuth } from "../Providers/SignupProvider";
-
+import { http } from "../Services/HttpService";
 const NewArticle = () => {
   const auth = useAuth();
   const navigate = useNavigate();
@@ -26,7 +25,7 @@ const NewArticle = () => {
       };
       const postData = async () => {
         try {
-          await axios.post("http://localhost:3001/Articles", newArticle);
+          await http.post("/Articles", newArticle);
           navigate("/");
         } catch (error) {}
       };
