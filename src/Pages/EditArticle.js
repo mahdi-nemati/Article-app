@@ -4,11 +4,12 @@ import { useNavigate, useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 import * as yup from "yup";
 import Input, { TextArea } from "../common/Input";
-import { useSignup } from "../Providers/SignupProvider";
+import { useAuth } from "../Providers/SignupProvider";
+
 const EditArticle = () => {
   const [article, setArticle] = useState([]);
-  const signup = useSignup();
   const navigate = useNavigate();
+  const auth = useAuth();
   const articleId = useParams().id;
   // get data
   useEffect(() => {
@@ -30,24 +31,25 @@ const EditArticle = () => {
   };
   // set submit function
   const onSubmit = (formValues) => {
-    if (!signup) navigate("/signup");
-    const { title, content, author } = formValues;
-    const editedArticle = {
-      title,
-      author,
-      body: content,
-    };
-
-    const postData = async () => {
-      try {
-        await axios.put(
-          `http://localhost:3001/Articles/${articleId}`,
-          editedArticle
-        );
-        navigate("/");
-      } catch (error) {}
-    };
-    postData();
+    if (!auth) navigate("/signup");
+    else {
+      const { title, content, author } = formValues;
+      const editedArticle = {
+        title,
+        author,
+        body: content,
+      };
+      const postData = async () => {
+        try {
+          await axios.put(
+            `http://localhost:3001/Articles/${articleId}`,
+            editedArticle
+          );
+          navigate("/");
+        } catch (error) {}
+      };
+      postData();
+    }
   };
   // set validate
   const validationSchema = yup.object({
@@ -72,28 +74,34 @@ const EditArticle = () => {
 
   return (
     <section class="flex justify-center text-teal-800 ">
-      <div class="mt-20 sm:mt-24 md:mt-32 flex 
+      <div
+        class="mt-20 sm:mt-24 md:mt-32 flex 
     justify-center bg-teal-400 w-72 p-7 rounded-md 
-     sm:w-96 items-center ">
-      <form onSubmit={formik.handleSubmit}
-       class="flex flex-col items-center w-full">
-          <p class="text-lg mb-3 sm:text-xl md:text-2xl lg:text-3xl lg:mb-5">
-              Edit Article
-            </p>
-        <Input formik={formik} name="title" />
-        <Input formik={formik} name="author" />
-        <TextArea formik={formik} name="content" />
-        <button
-          class={formik.isValid ? 
-            "bg-sky-600 text-white w-full rounded-sm sm:w-10/12 sm:text-lg sm:pt-1 sm:pb-1" : 
-            "bg-gray-400 text-gray-300 w-full sm:w-10/12 sm:text-lg sm:pt-1 sm:pb-1"}
-          disabled={!formik.isValid}
-          type="submit"
+     sm:w-96 items-center "
+      >
+        <form
+          onSubmit={formik.handleSubmit}
+          class="flex flex-col items-center w-full"
         >
-         update
-        </button>
-      </form>
-    </div>
+          <p class="text-lg mb-3 sm:text-xl md:text-2xl lg:text-3xl lg:mb-5">
+            Edit Article
+          </p>
+          <Input formik={formik} name="title" />
+          <Input formik={formik} name="author" />
+          <TextArea formik={formik} name="content" />
+          <button
+            class={
+              formik.isValid
+                ? "bg-sky-600 text-white w-full rounded-sm sm:w-10/12 sm:text-lg sm:pt-1 sm:pb-1"
+                : "bg-gray-400 text-gray-300 w-full sm:w-10/12 sm:text-lg sm:pt-1 sm:pb-1"
+            }
+            disabled={!formik.isValid}
+            type="submit"
+          >
+            update
+          </button>
+        </form>
+      </div>
     </section>
   );
 };

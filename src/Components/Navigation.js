@@ -1,9 +1,9 @@
 import { AiFillHome } from "react-icons/ai";
 import { BiLogIn } from "react-icons/bi";
-import { useSignup } from "../Providers/SignupProvider";
 import { NavLink } from "react-router-dom";
+import { useAuth } from "../Providers/SignupProvider";
 const Navigation = () => {
-  const signup = useSignup();
+  const auth = useAuth()
   return (
     <header>
       <nav
@@ -14,17 +14,14 @@ const Navigation = () => {
         <div class="flex  items-center justify-between h-full sm:w-11/12 ">
           <ul class="flex items-center justify-center ml-3">
             <li>
-              <NavLink
-                to="/"
-                class={(n) => (n.isActive ? "text-red-500" : "")}
-              >
+              <NavLink to="/" class={(n) => (n.isActive ? "text-red-500" : "")}>
                 <AiFillHome />
               </NavLink>
             </li>
           </ul>
           <ul class="flex items-center justify-center mr-2">
             <li class="ml-4 sm:ml-8 md:ml-10 lg:ml-16">
-              {signup ? (
+              {auth ? (
                 <p>Welcome</p>
               ) : (
                 <NavLink

@@ -2,10 +2,10 @@ import Input from "../common/Input";
 import { useFormik } from "formik";
 import * as yup from "yup";
 import { Link, useNavigate } from "react-router-dom";
-import { useSignupAction } from "../Providers/SignupProvider";
+import { useAuthAction } from "../Providers/SignupProvider";
 const SignupForm = () => {
   const navigate = useNavigate();
-  const dispatch = useSignupAction();
+  const dispatch = useAuthAction();
   // set initail
   const initialValues = {
     name: "",
@@ -15,8 +15,8 @@ const SignupForm = () => {
     phone: "",
   };
   // set submit function
-  const onSubmit = () => {
-    dispatch(true)
+  const onSubmit = (value) => {
+    dispatch(value);
     navigate("/");
   };
   // set validate
@@ -89,17 +89,16 @@ const SignupForm = () => {
             />
             {/* submit button */}
             <button
-              className={formik.isValid ? "btn" : ""}
+              class={
+                formik.isValid
+                  ? "bg-sky-600 text-white w-full rounded-sm sm:w-10/12 sm:text-lg sm:pt-1 sm:pb-1"
+                  : "bg-gray-400 text-gray-300 w-full sm:w-10/12 sm:text-lg sm:pt-1 sm:pb-1"
+              }
               disabled={!formik.isValid}
               type="submit"
             >
-              Signup
+              signup
             </button>
-            <Link to="/login">
-              <p class="mt-3 text-sm sm:text-base lg:text-lg">
-                Already Login ? Click here !
-              </p>
-            </Link>
           </form>
         </div>
       </section>
