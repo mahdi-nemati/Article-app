@@ -1,6 +1,6 @@
 const Input = ({ name, type = "text", formik }) => {
   return (
-    <div>
+    <div class="flex flex-col items-center justify-center">
       <input
         type={type}
         name={name}
@@ -26,15 +26,15 @@ export default Input;
 
 export const TextArea = ({ name, type = "text", formik }) => {
   return (
-    <div>
+    <div class="flex flex-col items-center justify-center">
       <textarea
         type={type}
         name={name}
         placeholder={name}
         {...formik.getFieldProps(name)}
-        class="border border-teal-300  w-9/12
-          text-base sm:text-lg md:text-xl caret-teal-300 rounded-md pl-1 outline-none 
-          focus:border-2 focus:border-teal-300  transition-all "
+        class="border border-teal-300  
+        text-base sm:text-lg md:text-xl caret-teal-300 rounded-md pl-1 outline-none 
+        focus:border-2 focus:border-teal-300  "
       />
       <div
         class=" mt-2 mb-2 text-sm text-rose-800
